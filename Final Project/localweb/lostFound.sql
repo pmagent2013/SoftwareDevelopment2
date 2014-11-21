@@ -20,7 +20,6 @@ brand text,
 buildingLost text,
 roomLost text,
 description text,
-currentStatus varchar(255) default 'lost',
 primary key(id)
 );
 
@@ -35,7 +34,6 @@ brand text,
 buildingFound text,
 roomFound text,
 description text,
-currentStatus varchar(255) default 'found',
 primary key(id)
 );
 
@@ -52,20 +50,21 @@ primary key(id)
 
 INSERT INTO user(username, password, email)
   values("admin", "cooter", "torinreilly@gmail.com");
+   
+
+ 
 
 INSERT INTO lost(dateLost, itemtype, color, brand, buildingLost, roomLost, description)
   values('2014-11-14', 'watch', 'silver', 'rolex', 'Hancock', '2023', 'CAT WATCH'),
          ('2014-11-16', 'coat', 'red', 'll bean', 'Foy', 'c3', 'fly'),
          ('1964-02-29', 'dad', 'mostly white with a little black on his dads side', 'german', 'dinning hall', null, 'i miss him'),
-         ('2014-11-17', 'laptop', 'black', 'Gateway', 'Donnelly', '101', 'cooter'),
-         ('2014-11-19', 'doge coin', 'gold', null, 'hancock', '2020', 'worth less than bit coins');
+         ('2014-11-17', 'laptop', 'black', 'Gateway', 'Donnelly', '101', 'cooter');
    
                       
 INSERT INTO found(dateFound, itemtype, color, brand, buildingFound, roomFound, description)
   values('2014-11-15', 'watch', 'silver', 'rolex', 'Hancock', '2023', 'CAT WATCH'),
          ('2014-11-14', 'phone', 'black', 'Motorola', 'Student Center', '3023', 'cracked'),
-         ('2014-11-17', 'laptop', 'black', 'Gateway', 'Donnelly', '101', 'cooter'),
-         ('2014-11-19', 'ufo', 'silver', 'Klingon', 'area 51', null, 'abducts cows');
+         ('2014-11-17', 'laptop', 'black', 'Gateway', 'Donnelly', '101', 'cooter');
                       
 select * from lost;
 select * from found;

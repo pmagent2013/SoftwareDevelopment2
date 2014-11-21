@@ -17,10 +17,10 @@
 <a href='login.php'> Admin </a>
 
 
-<h1>Welcome to Mike and Torin's Lost and Found</h1>
-<p>If you have either lost or found an item you can let us know here ;) </p>
+<h1>Hello Admin</h1>
+<p>You can change the status and remove items from this page </p>
 
-<h3>View Items Reported in Last
+<h3>Reported in last
 <a href='?days=3'>3 Days</a>
 | <a href='?days=5'>5 Days</a>
 | <a href='?days=7'>7 Days</a>
@@ -28,30 +28,44 @@
 </h3>
 <script>var days = null;</script>
 <?php
-#set php vaiable days to match the js one
 if (isset($_GET['days'])) $days = $_GET['days'];
-		else $days = null;
+		else $days = 100000;
 # Connect to MySQL server and the database
 require( 'includes/connect_db.php' ) ;
 
 # Includes these helper functions
 require( 'includes/helpers.php' ) ;
 
-if($days != null){
 # Show the records
-show_recordsLostRecent($dbc, $days);
+show_recordsLostRecentAdmin($dbc, $days);
 
-# Show the records
-show_recordsFoundRecent($dbc, $days);
+
+
+if ($_SERVER[ 'REQUEST_METHOD' ] == 'POST') {
+    $id = $_POST['id'];    
+    delete_LostItem($dbc, $id);
+
 }
-else{
-	echo '<img src = "doge.png">';
-}
+
+?>
+<form action="adminLostDelete.php" method="POST">
+<table>
+<tr>
+<td>ID:</td><td><input type="text" name="id" value="<?php if
+(isset($_POST['id'])) echo $_POST['id']; ?>"></td>
+</tr>
+</table>
+<p><input type="Submit" value="Delete Item"></p>
+</form>
+<?php
+
 
 
 # Close the connection
 mysqli_close( $dbc ) ;
 ?>
+
+
 
 </body>
 
